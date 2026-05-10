@@ -1,1 +1,60 @@
-[]
+[
+  {
+    "name": "theme_info",
+    "theme_name": "SullyPC",
+    "theme_version": "1.0.0",
+    "theme_author": "Custom",
+    "theme_documentation_url": "https://shopify.dev",
+    "theme_support_url": "https://shopify.dev"
+  },
+  {
+    "name": "Layout",
+    "settings": [
+      {
+        "type": "range",
+        "id": "page_width",
+        "label": "Page width",
+        "min": 1200, "max": 1800, "step": 20, "unit": "px",
+        "default": 1480
+      }
+    ]
+  },
+  {
+    "name": "Colors",
+    "settings": [
+      { "type": "color", "id": "color_bg",         "label": "Background",       "default": "#FFFFFF" },
+      { "type": "color", "id": "color_surface",    "label": "Surface",          "default": "#F4F3F7" },
+      { "type": "color", "id": "color_surface_2",  "label": "Surface (raised)", "default": "#ECEAF1" },
+      { "type": "color", "id": "color_border",     "label": "Border",           "default": "#1f2530" },
+      { "type": "color", "id": "color_text",       "label": "Text",             "default": "#1A1A1A" },
+      { "type": "color", "id": "color_text_dim",   "label": "Text dim",         "default": "#6B6B6B" },
+      { "type": "color", "id": "color_accent",     "label": "Accent",           "default": "#4D3F66" },
+      { "type": "color", "id": "color_accent_hot", "label": "Accent hover",     "default": "#3A2E50" }
+    ]
+  },
+  {
+    "name": "Typography",
+    "settings": [
+      { "type": "font_picker", "id": "heading_font", "label": "Heading", "default": "spectral_n6" },
+      { "type": "font_picker", "id": "body_font",    "label": "Body",    "default": "assistant_n4" },
+      { "type": "font_picker", "id": "mono_font",    "label": "Mono",    "default": "assistant_n4" }
+    ]
+  },
+  {
+    "name": "Brand",
+    "settings": [
+      { "type": "image_picker", "id": "favicon",    "label": "Favicon" },
+      { "type": "image_picker", "id": "logo",       "label": "Logo (optional — uses text if blank)" },
+      { "type": "range",        "id": "logo_width", "label": "Logo width", "min": 80, "max": 240, "step": 10, "unit": "px", "default": 140 }
+    ]
+  },
+  {
+    "name": "Social",
+    "settings": [
+      { "type": "url", "id": "social_instagram", "label": "Instagram" },
+      { "type": "url", "id": "social_youtube",   "label": "YouTube" },
+      { "type": "url", "id": "social_x",         "label": "X / Twitter" },
+      { "type": "url", "id": "social_discord",   "label": "Discord" }
+    ]
+  }
+]
