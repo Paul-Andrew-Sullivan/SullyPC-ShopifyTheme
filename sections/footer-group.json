@@ -5,11 +5,11 @@
     "footer": {
       "type": "footer",
       "blocks": {
-        "shop":   { "type": "link_list", "settings": { "heading": "Shop",   "menu": "footer" } },
-        "support":{ "type": "link_list", "settings": { "heading": "Support","menu": "footer" } },
-        "news":   { "type": "newsletter", "settings": { "heading": "Subscribe" } }
+        "shop":    { "type": "link_list", "settings": { "heading": "Shop",    "menu": "footer" } },
+        "support": { "type": "link_list", "settings": { "heading": "Support", "menu": "footer" } },
+        "chat":    { "type": "chat",      "settings": { "heading": "Questions?", "subtext": "Chat with us — we respond fast.", "button_text": "Start a chat" } }
       },
-      "block_order": ["shop","support","news"]
+      "block_order": ["shop", "support", "chat"]
     }
   },
   "order": ["footer"]

@@ -1,0 +1,39 @@
+<section class="section">
+  <div class="container">
+    <div class="contact-wrap reveal">
+      <span class="eyebrow">{{ section.settings.eyebrow }}</span>
+      <h1 style="margin-top:.8rem;">{{ section.settings.heading }}</h1>
+      {%- if section.settings.lede != blank -%}
+        <p class="lede">{{ section.settings.lede }}</p>
+      {%- endif -%}
+
+      <button class="btn btn--primary contact-wrap__cta" data-open-chat>
+        {{ section.settings.button_text }} →
+      </button>
+
+      <div class="contact-wrap__meta">
+        {%- if section.settings.response_time != blank -%}
+          <div><strong>Response time</strong> — {{ section.settings.response_time }}</div>
+        {%- endif -%}
+        {%- if section.settings.hours != blank -%}
+          <div><strong>Hours</strong> — {{ section.settings.hours }}</div>
+        {%- endif -%}
+      </div>
+    </div>
+  </div>
+</section>
+
+{% schema %}
+{
+  "name": "Contact",
+  "settings": [
+    { "type": "text",     "id": "eyebrow",       "label": "Eyebrow",       "default": "GET IN TOUCH" },
+    { "type": "text",     "id": "heading",        "label": "Heading",       "default": "Let's talk builds." },
+    { "type": "textarea", "id": "lede",           "label": "Lede",          "default": "Have a question about a build, a part, or a custom commission? Chat with us directly — no email required." },
+    { "type": "text",     "id": "button_text",    "label": "Button text",   "default": "Start a chat" },
+    { "type": "text",     "id": "response_time",  "label": "Response time", "default": "Usually within a few hours" },
+    { "type": "text",     "id": "hours",          "label": "Hours",         "default": "Mon – Fri, 10 am – 8 pm ET" }
+  ],
+  "presets": [{ "name": "Contact" }]
+}
+{% endschema %}

@@ -535,6 +535,16 @@ h3 { font-size: 1.25rem; }
 .page-content h2 { color: var(--text); margin: 2.5rem 0 1rem; }
 .page-content p, .page-content li { font-size: 1.05rem; line-height: 1.7; }
 
+/* ---------- Contact ---------- */
+.contact-wrap { max-width: 56ch; padding: 2rem 0; }
+.contact-wrap__cta { margin-top: 2.5rem; font-size: 1rem; padding: 1rem 2rem; }
+.contact-wrap__meta {
+  margin-top: 2rem;
+  display: flex; flex-direction: column; gap: .7rem;
+  color: var(--text-dim); font-size: .9rem;
+}
+.contact-wrap__meta strong { color: var(--text); }
+
 /* ---------- Custom Build page ---------- */
 .cb-hero {
   padding: 5rem 0 3rem;
@@ -572,6 +582,7 @@ h3 { font-size: 1.25rem; }
 .process__step h3 { font-size: 1.1rem; margin-bottom: .6rem; }
 .process__step p { color: var(--text-dim); font-size: .9rem; margin: 0; }
 @media (max-width: 800px) { .process { grid-template-columns: repeat(2, 1fr); } }
+@media (max-width: 480px)  { .process { grid-template-columns: 1fr; } }
 
 .tier-grid {
   display: grid;
