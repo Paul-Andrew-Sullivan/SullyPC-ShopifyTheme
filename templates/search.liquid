@@ -1,0 +1,26 @@
+<section class="section">
+  <div class="container">
+    <div class="reveal" style="margin-bottom:2rem;">
+      <span class="eyebrow">SEARCH</span>
+      <h1 style="margin-top:.8rem;">{% if search.performed %}Results for "{{ search.terms }}"{% else %}Search the bench{% endif %}</h1>
+    </div>
+
+    <form action="{{ routes.search_url }}" method="get" style="margin-bottom:2rem;display:flex;gap:.5rem;">
+      <input type="search" name="q" value="{{ search.terms | escape }}" placeholder="GPU, CPU, build name…"
+             style="flex:1;background:var(--surface);border:1px solid var(--border);color:var(--text);padding:1rem 1.2rem;font-size:1rem;">
+      <button class="btn btn--primary" type="submit">Search</button>
+    </form>
+
+    {%- if search.performed -%}
+      {%- if search.results.size > 0 -%}
+        <div class="mv-grid">
+          {%- for item in search.results -%}
+            {%- if item.object_type == 'product' -%}{%- render 'product-card', product: item -%}{%- endif -%}
+          {%- endfor -%}
+        </div>
+      {%- else -%}
+        <div class="cart-empty"><p>No results for "{{ search.terms }}".</p></div>
+      {%- endif -%}
+    {%- endif -%}
+  </div>
+</section>

@@ -1,0 +1,38 @@
+<section class="section">
+  <div class="container">
+    <div class="reveal" style="margin-bottom:2rem;">
+      <span class="eyebrow">{{ 'customer.account.title' | t }}</span>
+      <h1 style="margin-top:.8rem;">Welcome, {{ customer.first_name | default: customer.email }}</h1>
+    </div>
+
+    <div class="account">
+      <nav class="account__nav">
+        <a href="{{ routes.account_url }}" class="is-active">Orders</a>
+        <a href="{{ routes.account_addresses_url }}">Addresses</a>
+        <a href="{{ routes.account_logout_url }}">Log out</a>
+      </nav>
+
+      <div class="account__panel">
+        <h2>Order history</h2>
+        {%- if customer.orders.size > 0 -%}
+          <table class="orders-table">
+            <thead><tr><th>Order</th><th>Date</th><th>Status</th><th>Total</th></tr></thead>
+            <tbody>
+              {%- for order in customer.orders -%}
+                <tr>
+                  <td><a href="{{ order.customer_url }}" style="color:var(--accent);">{{ order.name }}</a></td>
+                  <td>{{ order.created_at | date: '%b %d, %Y' }}</td>
+                  <td><span class="status-pill {% if order.fulfillment_status == 'fulfilled' %}status-pill--ok{% endif %}">{{ order.fulfillment_status_label | default: 'Processing' }}</span></td>
+                  <td style="font-family:var(--font-mono);">{{ order.total_price | money }}</td>
+                </tr>
+              {%- endfor -%}
+            </tbody>
+          </table>
+        {%- else -%}
+          <div class="cart-empty"><p>No orders yet.</p><a href="{{ routes.collections_url }}" class="btn btn--primary">Start shopping</a></div>
+        {%- endif -%}
+      </div>
+    </div>
+  </div>
+</section>
+{% schema %}{ "name": "Account", "settings": [] }{% endschema %}

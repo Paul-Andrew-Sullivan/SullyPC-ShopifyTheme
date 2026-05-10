@@ -1,0 +1,27 @@
+<section class="section">
+  <div class="container">
+    <div class="reveal" style="margin-bottom:2rem;">
+      <span class="eyebrow">ORDER {{ order.name }}</span>
+      <h1 style="margin-top:.8rem;">Order details</h1>
+    </div>
+    <table class="orders-table">
+      <thead><tr><th>Item</th><th>Qty</th><th>Price</th></tr></thead>
+      <tbody>
+        {%- for line in order.line_items -%}
+          <tr>
+            <td><a href="{{ line.product.url }}">{{ line.title }}</a></td>
+            <td style="font-family:var(--font-mono);">{{ line.quantity }}</td>
+            <td style="font-family:var(--font-mono);">{{ line.final_line_price | money }}</td>
+          </tr>
+        {%- endfor -%}
+      </tbody>
+    </table>
+    <div style="display:flex;justify-content:flex-end;margin-top:2rem;font-family:var(--font-mono);">
+      <div style="min-width:280px;">
+        <div class="cart__summary__row"><span>Subtotal</span><span>{{ order.subtotal_price | money }}</span></div>
+        <div class="cart__summary__row"><span>Shipping</span><span>{{ order.shipping_price | money }}</span></div>
+        <div class="cart__summary__row"><strong>Total</strong><strong style="color:var(--accent);">{{ order.total_price | money }}</strong></div>
+      </div>
+    </div>
+  </div>
+</section>

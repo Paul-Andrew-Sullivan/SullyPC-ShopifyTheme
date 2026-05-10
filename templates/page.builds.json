@@ -1,0 +1,7 @@
+{
+  "sections": {
+    "intro": { "type": "main-page" },
+    "mosaic": { "type": "builds-mosaic", "settings": { "heading": "Every build, on the wall", "lede": "Hover any tile for the full spec sheet." } }
+  },
+  "order": ["intro","mosaic"]
+}

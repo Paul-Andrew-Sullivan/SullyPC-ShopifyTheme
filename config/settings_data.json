@@ -1,0 +1,53 @@
+{
+  "current": {
+    "page_width": 1480,
+    "color_bg": "#0a0e14",
+    "color_surface": "#11151c",
+    "color_surface_2": "#171c25",
+    "color_border": "#1f2530",
+    "color_text": "#e8ecf2",
+    "color_text_dim": "#8a93a3",
+    "color_accent": "#6b8eff",
+    "color_accent_hot": "#88a4ff",
+    "heading_font": "assistant_n7",
+    "body_font": "assistant_n4",
+    "mono_font": "assistant_n4",
+    "logo_width": 140,
+    "social_instagram": "",
+    "social_youtube": "",
+    "social_x": "",
+    "social_discord": "",
+    "sections": {
+      "header": {
+        "type": "header",
+        "settings": {
+          "menu": "main-menu"
+        }
+      },
+      "footer": {
+        "type": "footer",
+        "settings": {
+          "tagline": "Custom builds. Curated parts. Shipped from the bench."
+        },
+        "blocks": {
+          "links1": { "type": "link_list", "settings": { "heading": "Shop", "menu": "footer" } }
+        },
+        "block_order": ["links1"]
+      }
+    },
+    "content_for_index": ["hero", "featured-builds", "featured-parts", "specs-strip", "shop-the-bench"]
+  },
+  "presets": {
+    "Default": {
+      "page_width": 1480,
+      "color_bg": "#0a0e14",
+      "color_surface": "#11151c",
+      "color_surface_2": "#171c25",
+      "color_border": "#1f2530",
+      "color_text": "#e8ecf2",
+      "color_text_dim": "#8a93a3",
+      "color_accent": "#6b8eff",
+      "color_accent_hot": "#88a4ff"
+    }
+  }
+}

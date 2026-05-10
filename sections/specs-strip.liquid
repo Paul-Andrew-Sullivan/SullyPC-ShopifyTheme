@@ -1,0 +1,51 @@
+<section class="section" style="padding-top:0;">
+  <div class="container">
+    <div class="specs-strip reveal">
+      {%- for block in section.blocks -%}
+        <div class="specs-strip__cell" {{ block.shopify_attributes }}>
+          <svg class="ico" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6">
+            {%- case block.settings.icon -%}
+              {%- when 'shield' -%}<path d="M12 3l8 3v6c0 5-3.5 8-8 9-4.5-1-8-4-8-9V6l8-3z"/>
+              {%- when 'truck'  -%}<path d="M3 7h11v9H3zM14 11h4l3 3v2h-7zM7 19a2 2 0 1 0 0-4 2 2 0 0 0 0 4zM18 19a2 2 0 1 0 0-4 2 2 0 0 0 0 4z"/>
+              {%- when 'spark'  -%}<path d="M12 3v6M12 15v6M3 12h6M15 12h6M5 5l4 4M15 15l4 4M19 5l-4 4M9 15l-4 4"/>
+              {%- when 'wrench' -%}<path d="M14 7a4 4 0 1 0 4 4l3 3 2-2-3-3a4 4 0 0 0-6-2zM3 21l8-8"/>
+              {%- else -%}<circle cx="12" cy="12" r="9"/>
+            {%- endcase -%}
+          </svg>
+          <h3>{{ block.settings.title }}</h3>
+          <p>{{ block.settings.body }}</p>
+        </div>
+      {%- endfor -%}
+    </div>
+  </div>
+</section>
+
+{% schema %}
+{
+  "name": "Specs strip",
+  "blocks": [{
+    "type": "cell", "name": "Cell", "limit": 4,
+    "settings": [
+      { "type": "select", "id": "icon", "label": "Icon", "default": "shield",
+        "options": [
+          {"value":"shield","label":"Shield"},
+          {"value":"truck","label":"Truck"},
+          {"value":"spark","label":"Spark"},
+          {"value":"wrench","label":"Wrench"}
+        ]
+      },
+      { "type": "text", "id": "title", "label": "Title", "default": "Tested" },
+      { "type": "textarea", "id": "body", "label": "Body", "default": "Every component bench-tested before it leaves." }
+    ]
+  }],
+  "presets": [{
+    "name": "Specs strip",
+    "blocks": [
+      { "type": "cell", "settings": { "icon": "shield", "title": "12-month warranty", "body": "Every build covered." } },
+      { "type": "cell", "settings": { "icon": "truck",  "title": "Insured shipping", "body": "Custom-foam crated, signed delivery." } },
+      { "type": "cell", "settings": { "icon": "spark",  "title": "Bench-tested",     "body": "24h burn-in before it goes out." } },
+      { "type": "cell", "settings": { "icon": "wrench", "title": "Real support",    "body": "Direct line to the builder." } }
+    ]
+  }]
+}
+{% endschema %}

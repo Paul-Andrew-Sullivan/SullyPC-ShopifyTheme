@@ -1,0 +1,13 @@
+{
+  "sections": {
+    "hero":             { "type": "hero", "blocks": {
+      "s1": { "type": "stat", "settings": { "value": "120+",  "label": "Builds shipped" } },
+      "s2": { "type": "stat", "settings": { "value": "48 h",  "label": "Quote turnaround" } },
+      "s3": { "type": "stat", "settings": { "value": "24 h",  "label": "Burn-in tested" } },
+      "s4": { "type": "stat", "settings": { "value": "12 mo", "label": "Warranty" } }
+    }, "block_order": ["s1","s2","s3","s4"] },
+    "featured-builds":  { "type": "builds-mosaic" },
+    "shop-the-bench":   { "type": "shop-the-bench" }
+  },
+  "order": ["hero","featured-builds","shop-the-bench"]
+}

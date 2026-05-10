@@ -1,0 +1,6 @@
+{
+  "sections": {
+    "form": { "type": "custom-build-form" }
+  },
+  "order": ["form"]
+}

@@ -1,0 +1,56 @@
+<section class="section">
+  <div class="container">
+    <div class="reveal" style="margin-bottom:2rem;">
+      <span class="eyebrow">CART</span>
+      <h1 style="margin-top:.8rem;">{{ 'cart.general.title' | t }}</h1>
+    </div>
+
+    {%- if cart.item_count > 0 -%}
+      {%- form 'cart' -%}
+        <div class="cart">
+          <div class="cart__items">
+            {%- for item in cart.items -%}
+              <div class="cart__row">
+                <a href="{{ item.url }}" class="cart__row__media">
+                  {%- if item.image != blank -%}<img src="{{ item.image | image_url: width: 200 }}" alt="">{%- endif -%}
+                </a>
+                <div>
+                  <div class="cart__row__title"><a href="{{ item.url }}">{{ item.product.title }}</a></div>
+                  {%- unless item.product.has_only_default_variant -%}
+                    <div class="cart__row__variant">{{ item.variant.title }}</div>
+                  {%- endunless -%}
+                  <a href="{{ item.url_to_remove }}" class="cart__row__remove">Remove</a>
+                </div>
+                <div class="product__qty" data-qty>
+                  <button type="button" data-step="-1" aria-label="Decrease">−</button>
+                  <input type="number" name="updates[{{ item.key }}]" value="{{ item.quantity }}" min="0" data-line-key="{{ item.key }}">
+                  <button type="button" data-step="1" aria-label="Increase">+</button>
+                </div>
+                <div class="cart__row__price">{{ item.final_line_price | money }}</div>
+              </div>
+            {%- endfor -%}
+          </div>
+
+          <aside class="cart__summary">
+            <h2>Order summary</h2>
+            <div class="cart__summary__row"><span>Subtotal</span><span class="num">{{ cart.total_price | money }}</span></div>
+            <div class="cart__summary__row"><span>Shipping</span><span class="num" style="color:var(--text-dim);">Calculated at checkout</span></div>
+            <div class="cart__summary__row"><strong>Total</strong><strong class="num" style="color:var(--accent);">{{ cart.total_price | money }}</strong></div>
+            <button type="submit" name="update" class="btn btn--block" style="margin-top:1.2rem;">Update</button>
+            <button type="submit" name="checkout" class="btn btn--primary btn--block" style="margin-top:.6rem;">Checkout →</button>
+            <a href="{{ routes.collections_url }}" class="btn btn--ghost btn--block" style="margin-top:.6rem;">Continue shopping</a>
+          </aside>
+        </div>
+      {%- endform -%}
+    {%- else -%}
+      <div class="cart-empty">
+        <p>Your cart is empty.</p>
+        <a href="{{ routes.collections_url }}" class="btn btn--primary">Shop now</a>
+      </div>
+    {%- endif -%}
+  </div>
+</section>
+
+{% schema %}
+{ "name": "Cart", "settings": [] }
+{% endschema %}

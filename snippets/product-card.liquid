@@ -1,0 +1,29 @@
+{%- liquid
+  assign p = product
+-%}
+<a href="{{ p.url | default: '#' }}" class="mv-card">
+  {%- if p.compare_at_price > p.price -%}<span class="mv-card__badge">Save {{ p.compare_at_price | minus: p.price | money }}</span>{%- endif -%}
+  {%- unless p.available -%}<span class="mv-card__badge mv-card__badge--sold">Sold</span>{%- endunless -%}
+  <div class="mv-card__media">
+    {%- if p.featured_image != blank -%}
+      <img src="{{ p.featured_image | image_url: width: 800 }}" alt="{{ p.title | escape }}" loading="lazy">
+    {%- else -%}
+      {{ 'product-1' | placeholder_svg_tag: 'placeholder-svg' }}
+    {%- endif -%}
+  </div>
+  <div class="mv-card__overlay"></div>
+  <div class="mv-card__corner"></div>
+  <div class="mv-card__body">
+    <div class="mv-card__title">{{ p.title }}</div>
+    <div class="mv-card__price">
+      {%- if p.compare_at_price > p.price -%}<del>{{ p.compare_at_price | money }}</del>{%- endif -%}
+      {{ p.price | money }}
+    </div>
+    {%- if p.description != blank -%}
+      <div class="mv-card__desc">{{ p.description | strip_html | truncatewords: 18 }}</div>
+    {%- endif -%}
+    <div class="mv-card__quick">
+      <span class="btn">View →</span>
+    </div>
+  </div>
+</a>

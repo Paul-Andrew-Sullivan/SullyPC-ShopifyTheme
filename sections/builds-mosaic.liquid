@@ -1,0 +1,88 @@
+{%- comment -%} Builds Mosaic — Parallelism-style portfolio (NOT for sale) {%- endcomment -%}
+<section class="section">
+  <div class="container">
+    <div class="section__head reveal">
+      <div>
+        <span class="eyebrow">{{ section.settings.eyebrow }}</span>
+        <h2 style="margin-top:.8rem;">{{ section.settings.heading }}</h2>
+        {%- if section.settings.lede != blank -%}<p class="lede">{{ section.settings.lede }}</p>{%- endif -%}
+      </div>
+      {%- if section.settings.cta_text != blank -%}<a class="btn" href="{{ section.settings.cta_link }}">{{ section.settings.cta_text }} →</a>{%- endif -%}
+    </div>
+
+    <div class="mosaic reveal">
+      {%- if section.settings.intro_heading != blank -%}
+        <div class="mosaic__item mosaic__item--intro">
+          <div>
+            <span class="eyebrow">{{ section.settings.intro_eyebrow }}</span>
+            <h2 style="margin-top:.8rem; color: var(--text);">{{ section.settings.intro_heading }}</h2>
+            <p>{{ section.settings.intro_sub }}</p>
+          </div>
+          {%- if section.settings.intro_link != blank -%}
+            <a class="btn btn--ghost" href="{{ section.settings.intro_link }}" style="color: var(--accent);">View all builds →</a>
+          {%- endif -%}
+        </div>
+      {%- endif -%}
+
+      {%- for block in section.blocks -%}
+        <a href="{{ block.settings.link | default: '#' }}" class="mosaic__item mosaic__item--{{ block.settings.size }}" {{ block.shopify_attributes }}>
+          {%- if block.settings.image != blank -%}
+            <img src="{{ block.settings.image | image_url: width: 1400 }}" alt="{{ block.settings.title | escape }}" loading="lazy">
+          {%- else -%}
+            <div style="position:absolute;inset:0;background:linear-gradient(135deg,var(--surface-2),var(--surface));"></div>
+          {%- endif -%}
+          <div class="mosaic__item__meta">
+            <h3>{{ block.settings.title }}</h3>
+            {%- if block.settings.tag != blank -%}<span class="tag">{{ block.settings.tag }}</span>{%- endif -%}
+          </div>
+        </a>
+      {%- endfor -%}
+    </div>
+  </div>
+</section>
+
+{% schema %}
+{
+  "name": "Builds mosaic",
+  "settings": [
+    { "type": "text", "id": "eyebrow", "label": "Eyebrow", "default": "FROM THE BENCH" },
+    { "type": "text", "id": "heading", "label": "Heading", "default": "Selected builds" },
+    { "type": "textarea", "id": "lede", "label": "Lede", "default": "A portfolio of finished rigs — not for sale, just to show the work." },
+    { "type": "text", "id": "cta_text", "label": "CTA text", "default": "All builds" },
+    { "type": "url", "id": "cta_link", "label": "CTA link" },
+    { "type": "header", "content": "Intro tile" },
+    { "type": "text", "id": "intro_eyebrow", "label": "Intro eyebrow", "default": "FEATURED" },
+    { "type": "text", "id": "intro_heading", "label": "Intro heading", "default": "Each build, documented." },
+    { "type": "textarea", "id": "intro_sub", "label": "Intro sub", "default": "Component lists, thermal data, and benchmark results for every rig." },
+    { "type": "url", "id": "intro_link", "label": "Intro link" }
+  ],
+  "blocks": [{
+    "type": "build", "name": "Build",
+    "settings": [
+      { "type": "image_picker", "id": "image", "label": "Image" },
+      { "type": "text", "id": "title", "label": "Title", "default": "Project Name" },
+      { "type": "text", "id": "tag", "label": "Tag", "default": "RTX 4090" },
+      { "type": "url", "id": "link", "label": "Link" },
+      { "type": "select", "id": "size", "label": "Size", "default": "w2",
+        "options": [
+          { "value": "w2", "label": "2 × 1" },
+          { "value": "w2 mosaic__item--h2", "label": "2 × 2" },
+          { "value": "w3", "label": "3 × 1" },
+          { "value": "w3 mosaic__item--h2", "label": "3 × 2" }
+        ]
+      }
+    ]
+  }],
+  "presets": [{
+    "name": "Builds mosaic",
+    "blocks": [
+      { "type": "build", "settings": { "title": "Halcyon",        "tag": "RTX 4090 · i9",  "size": "w2 mosaic__item--h2" } },
+      { "type": "build", "settings": { "title": "Iron Lattice",   "tag": "Threadripper",   "size": "w2" } },
+      { "type": "build", "settings": { "title": "Voidcrawler",    "tag": "Watercooled",    "size": "w2" } },
+      { "type": "build", "settings": { "title": "Pulse",          "tag": "ITX · 5800X3D",  "size": "w2" } },
+      { "type": "build", "settings": { "title": "Northwind",      "tag": "Workstation",    "size": "w3" } },
+      { "type": "build", "settings": { "title": "Chrome Cathedral","tag": "Showpiece",     "size": "w3" } }
+    ]
+  }]
+}
+{% endschema %}

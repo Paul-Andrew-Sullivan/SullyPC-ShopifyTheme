@@ -1,0 +1,83 @@
+{%- assign p = product -%}
+<section class="section">
+  <div class="container">
+    <div class="product">
+      <div class="product__gallery" data-product-gallery>
+        <div class="product__thumbs">
+          {%- for img in p.images -%}
+            <button type="button" class="product__thumb {% if forloop.first %}is-active{% endif %}"
+                    data-product-thumb data-src="{{ img | image_url: width: 1200 }}">
+              <img src="{{ img | image_url: width: 200 }}" alt="">
+            </button>
+          {%- endfor -%}
+        </div>
+        <div class="product__main-image" data-product-main>
+          {%- if p.featured_image != blank -%}
+            <img src="{{ p.featured_image | image_url: width: 1200 }}" alt="{{ p.title | escape }}">
+          {%- else -%}
+            {{ 'product-1' | placeholder_svg_tag: 'placeholder-svg' }}
+          {%- endif -%}
+        </div>
+      </div>
+
+      <div class="product__info">
+        {%- if p.vendor != blank -%}<div class="product__vendor">{{ p.vendor }}</div>{%- endif -%}
+        <h1 class="product__title">{{ p.title }}</h1>
+        <div class="product__price">
+          {%- if p.compare_at_price > p.price -%}<del>{{ p.compare_at_price | money }}</del>{%- endif -%}
+          {{ p.price | money }}
+        </div>
+
+        {%- form 'product', p, class: 'product__form', data-add-to-cart: '' -%}
+          <input type="hidden" name="id" value="{{ p.selected_or_first_available_variant.id }}">
+
+          {%- unless p.has_only_default_variant -%}
+            <div class="product__variants">
+              {%- for option in p.options_with_values -%}
+                <div class="product__variant">
+                  <span class="product__variant-label">{{ option.name }}</span>
+                  <div class="product__variant-options">
+                    {%- for value in option.values -%}
+                      {%- assign vid = 'opt-' | append: forloop.index0 | append: '-' | append: forloop.index -%}
+                      <input type="radio" name="options[{{ option.name }}]" id="{{ vid }}" value="{{ value | escape }}"
+                             {% if option.selected_value == value %}checked{% endif %}>
+                      <label for="{{ vid }}">{{ value }}</label>
+                    {%- endfor -%}
+                  </div>
+                </div>
+              {%- endfor -%}
+            </div>
+          {%- endunless -%}
+
+          <div class="product__qty" data-qty>
+            <button type="button" data-step="-1" aria-label="Decrease">−</button>
+            <input type="number" name="quantity" value="1" min="1">
+            <button type="button" data-step="1" aria-label="Increase">+</button>
+          </div>
+
+          <div class="product__buy">
+            <button type="submit" class="btn btn--primary btn--block" {% unless p.available %}disabled{% endunless %}>
+              {%- if p.available -%}Add to cart{%- else -%}Sold out{%- endif -%}
+            </button>
+          </div>
+        {%- endform -%}
+
+        <div class="product__desc">
+          {{ p.description }}
+        </div>
+
+        {%- if p.metafields.specs.list.value -%}
+          <dl class="product__specs">
+            {%- for entry in p.metafields.specs.list.value -%}
+              <div class="product__spec-row"><dt>{{ entry.label }}</dt><dd>{{ entry.value }}</dd></div>
+            {%- endfor -%}
+          </dl>
+        {%- endif -%}
+      </div>
+    </div>
+  </div>
+</section>
+
+{% schema %}
+{ "name": "Product", "settings": [] }
+{% endschema %}

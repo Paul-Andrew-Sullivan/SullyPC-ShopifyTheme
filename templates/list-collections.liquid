@@ -1,0 +1,28 @@
+<section class="section">
+  <div class="container">
+    <div class="reveal" style="margin-bottom:2rem;">
+      <span class="eyebrow">ALL COLLECTIONS</span>
+      <h1 style="margin-top:.8rem;">Shop</h1>
+    </div>
+    <div class="mv-grid">
+      {%- for collection in collections -%}
+        {%- unless collection.handle == 'frontpage' -%}
+          <a href="{{ collection.url }}" class="mv-card" style="aspect-ratio:1/1;">
+            <div class="mv-card__media">
+              {%- if collection.featured_image != blank -%}
+                <img src="{{ collection.featured_image | image_url: width: 800 }}" alt="{{ collection.title | escape }}" loading="lazy">
+              {%- else -%}
+                <div style="position:absolute;inset:0;background:linear-gradient(135deg,var(--surface-2),var(--surface));"></div>
+              {%- endif -%}
+            </div>
+            <div class="mv-card__overlay"></div>
+            <div class="mv-card__body">
+              <div class="mv-card__title" style="font-size:1.25rem;">{{ collection.title }}</div>
+              <div class="mv-card__price">{{ collection.products_count }} items</div>
+            </div>
+          </a>
+        {%- endunless -%}
+      {%- endfor -%}
+    </div>
+  </div>
+</section>

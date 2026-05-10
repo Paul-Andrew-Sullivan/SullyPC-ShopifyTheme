@@ -1,0 +1,83 @@
+<section class="section" style="padding-top:2rem;">
+  <div class="container">
+    <div class="reveal">
+      <span class="eyebrow">{{ collection.title | upcase }}</span>
+      <h1 style="margin-top:.8rem;">{{ collection.title }}</h1>
+      {%- if collection.description != blank -%}<p class="lede" style="color:var(--text-dim);max-width:60ch;margin-top:.8rem;">{{ collection.description }}</p>{%- endif -%}
+    </div>
+
+    <div class="collection">
+      <aside class="facets">
+        <form>
+          {%- if collection.filters.size > 0 -%}
+            {%- for filter in collection.filters -%}
+              <div class="facets__group">
+                <h3>{{ filter.label }}</h3>
+                <ul class="facets__list">
+                  {%- for v in filter.values -%}
+                    <li><label><input type="checkbox" name="{{ v.param_name }}" value="{{ v.value }}" {% if v.active %}checked{% endif %}> {{ v.label }} <span style="color:var(--text-dim);margin-left:auto;font-family:var(--font-mono);font-size:.75rem;">({{ v.count }})</span></label></li>
+                  {%- endfor -%}
+                </ul>
+              </div>
+            {%- endfor -%}
+          {%- else -%}
+            <div class="facets__group"><h3>Type</h3>
+              <ul class="facets__list">
+                <li><label><input type="checkbox"> GPU</label></li>
+                <li><label><input type="checkbox"> CPU</label></li>
+                <li><label><input type="checkbox"> Memory</label></li>
+                <li><label><input type="checkbox"> Storage</label></li>
+                <li><label><input type="checkbox"> Cooling</label></li>
+              </ul>
+            </div>
+            <div class="facets__group"><h3>Condition</h3>
+              <ul class="facets__list">
+                <li><label><input type="checkbox"> New</label></li>
+                <li><label><input type="checkbox"> Open box</label></li>
+                <li><label><input type="checkbox"> Used / Tested</label></li>
+              </ul>
+            </div>
+            <div class="facets__group"><h3>Price</h3>
+              <ul class="facets__list">
+                <li><label><input type="checkbox"> Under $200</label></li>
+                <li><label><input type="checkbox"> $200–$500</label></li>
+                <li><label><input type="checkbox"> $500–$1000</label></li>
+                <li><label><input type="checkbox"> $1000+</label></li>
+              </ul>
+            </div>
+          {%- endif -%}
+        </form>
+      </aside>
+
+      <div>
+        <div class="collection__head">
+          <span class="collection__count">{{ collection.products_count }} items</span>
+          <select style="background:var(--surface);border:1px solid var(--border);color:var(--text);padding:.55rem .8rem;font-family:var(--font-mono);font-size:.78rem;">
+            <option>Latest</option><option>Price: low–high</option><option>Price: high–low</option><option>Best selling</option>
+          </select>
+        </div>
+
+        {%- paginate collection.products by 24 -%}
+          {%- if collection.products.size > 0 -%}
+            <div class="mv-grid">
+              {%- for product in collection.products -%}{%- render 'product-card', product: product -%}{%- endfor -%}
+            </div>
+            {%- if paginate.pages > 1 -%}
+              <div style="display:flex;gap:.8rem;justify-content:center;margin-top:3rem;font-family:var(--font-mono);">
+                {%- if paginate.previous -%}<a class="btn" href="{{ paginate.previous.url }}">← Prev</a>{%- endif -%}
+                <span style="padding:.85rem 1.2rem;color:var(--text-dim);">{{ paginate.current_page }} / {{ paginate.pages }}</span>
+                {%- if paginate.next -%}<a class="btn" href="{{ paginate.next.url }}">Next →</a>{%- endif -%}
+              </div>
+            {%- endif -%}
+          {%- else -%}
+            <div class="cart-empty"><p>No items in this collection yet.</p></div>
+          {%- endif -%}
+        {%- endpaginate -%}
+      </div>
+    </div>
+  </div>
+</section>
+
+{% schema %}
+{ "name": "Collection", "settings": [] }
+{% endschema %}

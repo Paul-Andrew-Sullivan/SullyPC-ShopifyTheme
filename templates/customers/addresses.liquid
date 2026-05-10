@@ -1,0 +1,16 @@
+<section class="section">
+  <div class="container">
+    <div class="reveal" style="margin-bottom:2rem;">
+      <span class="eyebrow">ADDRESSES</span>
+      <h1 style="margin-top:.8rem;">Your addresses</h1>
+    </div>
+    <div style="display:grid;grid-template-columns:repeat(auto-fill,minmax(280px,1fr));gap:1rem;">
+      {%- for address in customer.addresses -%}
+        <div style="background:var(--surface);border:1px solid var(--border);padding:1.4rem;">
+          <strong>{{ address.first_name }} {{ address.last_name }}</strong>
+          <div style="color:var(--text-dim);margin-top:.5rem;font-size:.9rem;">{{ address | format_address }}</div>
+        </div>
+      {%- endfor -%}
+    </div>
+  </div>
+</section>

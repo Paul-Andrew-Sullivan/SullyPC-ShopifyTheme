@@ -1,0 +1,17 @@
+<section class="section">
+  <div class="container" style="max-width:520px;">
+    <div class="reveal" style="margin-bottom:2rem;text-align:center;">
+      <span class="eyebrow" style="justify-content:center;">CREATE ACCOUNT</span>
+      <h1 style="margin-top:.8rem;">Join SullyPC</h1>
+    </div>
+    {%- form 'create_customer', class: 'cb-form', style: 'grid-template-columns:1fr 1fr;' -%}
+      {%- if form.errors -%}<p class="field--full" style="color:var(--danger);grid-column:1/-1;">{{ form.errors | default_errors }}</p>{%- endif -%}
+      <div class="field"><label>First name</label><input type="text" name="customer[first_name]"></div>
+      <div class="field"><label>Last name</label><input type="text" name="customer[last_name]"></div>
+      <div class="field field--full"><label>Email</label><input type="email" name="customer[email]" required></div>
+      <div class="field field--full"><label>Password</label><input type="password" name="customer[password]" required></div>
+      <div class="field field--full"><button type="submit" class="btn btn--primary btn--block">Create account</button></div>
+    {%- endform -%}
+  </div>
+</section>
+{% schema %}{ "name": "Register", "settings": [] }{% endschema %}

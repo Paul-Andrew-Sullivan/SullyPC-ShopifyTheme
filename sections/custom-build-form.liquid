@@ -1,0 +1,236 @@
+<!-- Hero -->
+<section class="cb-hero">
+  <div class="container cb-hero__inner">
+    <span class="eyebrow">{{ section.settings.hero_eyebrow }}</span>
+    <h1 style="margin-top:1rem;max-width:18ch;">{{ section.settings.hero_heading }}</h1>
+    {%- if section.settings.hero_lede != blank -%}
+      <p class="lede">{{ section.settings.hero_lede }}</p>
+    {%- endif -%}
+  </div>
+</section>
+
+<!-- How it works -->
+<section class="section">
+  <div class="container">
+    <div class="section__head reveal" style="margin-bottom:1.5rem;">
+      <div>
+        <span class="eyebrow">HOW IT WORKS</span>
+        <h2 style="margin-top:.8rem;">{{ section.settings.process_heading }}</h2>
+      </div>
+    </div>
+    <div class="process reveal">
+      {%- assign step_i = 0 -%}
+      {%- for block in section.blocks -%}
+        {%- if block.type == 'step' -%}
+          {%- assign step_i = step_i | plus: 1 -%}
+          <div class="process__step" {{ block.shopify_attributes }}>
+            <span class="process__num">0{{ step_i }} / {{ block.settings.code | upcase }}</span>
+            <h3>{{ block.settings.title }}</h3>
+            <p>{{ block.settings.body }}</p>
+          </div>
+        {%- endif -%}
+      {%- endfor -%}
+    </div>
+  </div>
+</section>
+
+<!-- Starting points / tiers -->
+<section class="section" style="padding-top:0;">
+  <div class="container">
+    <div class="section__head reveal" style="margin-bottom:1.5rem;">
+      <div>
+        <span class="eyebrow">STARTING POINTS</span>
+        <h2 style="margin-top:.8rem;">{{ section.settings.tiers_heading }}</h2>
+        {%- if section.settings.tiers_lede != blank -%}
+          <p class="lede">{{ section.settings.tiers_lede }}</p>
+        {%- endif -%}
+      </div>
+    </div>
+    <div class="tier-grid reveal">
+      {%- assign tier_i = 0 -%}
+      {%- for block in section.blocks -%}
+        {%- if block.type == 'tier' -%}
+          {%- assign tier_i = tier_i | plus: 1 -%}
+          <div class="tier{% if block.settings.featured %} tier--featured{% endif %}" {{ block.shopify_attributes }}>
+            <span class="eyebrow">TIER 0{{ tier_i }}</span>
+            <h3>{{ block.settings.title }}</h3>
+            <div class="price">{{ block.settings.price_from }}<small> {{ block.settings.price_to }}</small></div>
+            <p style="color:var(--text-dim);">{{ block.settings.description }}</p>
+            <ul>
+              {%- if block.settings.spec_1 != blank -%}<li>{{ block.settings.spec_1 }}</li>{%- endif -%}
+              {%- if block.settings.spec_2 != blank -%}<li>{{ block.settings.spec_2 }}</li>{%- endif -%}
+              {%- if block.settings.spec_3 != blank -%}<li>{{ block.settings.spec_3 }}</li>{%- endif -%}
+              {%- if block.settings.spec_4 != blank -%}<li>{{ block.settings.spec_4 }}</li>{%- endif -%}
+              {%- if block.settings.spec_5 != blank -%}<li>{{ block.settings.spec_5 }}</li>{%- endif -%}
+            </ul>
+          </div>
+        {%- endif -%}
+      {%- endfor -%}
+    </div>
+  </div>
+</section>
+
+<!-- Send a brief -->
+<section class="section" style="padding-top:0;">
+  <div class="container">
+    <div class="cb-layout reveal">
+
+      <!-- Left: context info -->
+      <div>
+        <span class="eyebrow">SEND A BRIEF</span>
+        <h2 style="margin-top:.8rem;">{{ section.settings.form_heading }}</h2>
+        {%- if section.settings.form_lede != blank -%}
+          <p style="color:var(--text-dim);margin-top:1rem;">{{ section.settings.form_lede }}</p>
+        {%- endif -%}
+        <div style="margin-top:2rem;display:flex;flex-direction:column;gap:1rem;font-size:.9rem;color:var(--text-dim);">
+          {%- if section.settings.reply_time != blank -%}
+            <div><strong style="color:var(--text);">Reply time</strong><br>{{ section.settings.reply_time }}</div>
+          {%- endif -%}
+          {%- if section.settings.build_time != blank -%}
+            <div><strong style="color:var(--text);">Build time</strong><br>{{ section.settings.build_time }}</div>
+          {%- endif -%}
+          {%- if section.settings.deposit_info != blank -%}
+            <div><strong style="color:var(--text);">Deposit</strong><br>{{ section.settings.deposit_info }}</div>
+          {%- endif -%}
+        </div>
+      </div>
+
+      <!-- Right: contact form -->
+      {%- form 'contact', class: 'cb-form' -%}
+        <input type="hidden" name="contact[tags]" value="custom-build">
+
+        <div class="field">
+          <label for="cb-name">Your name</label>
+          <input type="text" id="cb-name" name="contact[name]" placeholder="Jane Doe" required>
+        </div>
+        <div class="field">
+          <label for="cb-email">Email</label>
+          <input type="email" id="cb-email" name="contact[email]" placeholder="jane@example.com" required>
+        </div>
+
+        <div class="field field--full">
+          <label>What's this build for?</label>
+          <div class="chip-row">
+            <input type="checkbox" id="cb-u1" name="contact[use_1440p]" value="Gaming · 1440p"><label for="cb-u1">Gaming · 1440p</label>
+            <input type="checkbox" id="cb-u2" name="contact[use_4k]" value="Gaming · 4K"><label for="cb-u2">Gaming · 4K</label>
+            <input type="checkbox" id="cb-u3" name="contact[use_streaming]" value="Streaming"><label for="cb-u3">Streaming</label>
+            <input type="checkbox" id="cb-u4" name="contact[use_3d]" value="3D / render"><label for="cb-u4">3D / render</label>
+            <input type="checkbox" id="cb-u5" name="contact[use_video]" value="Video editing"><label for="cb-u5">Video editing</label>
+            <input type="checkbox" id="cb-u6" name="contact[use_ml]" value="ML / compute"><label for="cb-u6">ML / compute</label>
+            <input type="checkbox" id="cb-u7" name="contact[use_work]" value="General work"><label for="cb-u7">General work</label>
+            <input type="checkbox" id="cb-u8" name="contact[use_showpiece]" value="Showpiece"><label for="cb-u8">Showpiece</label>
+          </div>
+        </div>
+
+        <div class="field">
+          <label for="cb-budget">Budget</label>
+          <select id="cb-budget" name="contact[Budget]">
+            <option>$1,800 – $2,500 (Workhorse)</option>
+            <option>$3,200 – $4,500 (Apex)</option>
+            <option>$5,500+ (Studio)</option>
+            <option>Flexible / not sure yet</option>
+          </select>
+        </div>
+        <div class="field">
+          <label for="cb-timeline">Timeline</label>
+          <select id="cb-timeline" name="contact[Timeline]">
+            <option>Standard (2–3 weeks)</option>
+            <option>Rush (priced separately)</option>
+            <option>Flexible</option>
+          </select>
+        </div>
+
+        <div class="field field--full">
+          <label>Aesthetic preferences</label>
+          <div class="chip-row">
+            <input type="checkbox" id="cb-a1" name="contact[ae_black]" value="All-black"><label for="cb-a1">All-black</label>
+            <input type="checkbox" id="cb-a2" name="contact[ae_white]" value="White / minimal"><label for="cb-a2">White / minimal</label>
+            <input type="checkbox" id="cb-a3" name="contact[ae_rgb]" value="RGB"><label for="cb-a3">RGB</label>
+            <input type="checkbox" id="cb-a4" name="contact[ae_norgb]" value="No RGB"><label for="cb-a4">No RGB</label>
+            <input type="checkbox" id="cb-a5" name="contact[ae_itx]" value="ITX / small"><label for="cb-a5">ITX / small</label>
+            <input type="checkbox" id="cb-a6" name="contact[ae_showcase]" value="Showcase chassis"><label for="cb-a6">Showcase chassis</label>
+            <input type="checkbox" id="cb-a7" name="contact[ae_water]" value="Watercooled"><label for="cb-a7">Watercooled</label>
+          </div>
+        </div>
+
+        <div class="field field--full">
+          <label for="cb-brief">The brief</label>
+          <textarea id="cb-brief" name="contact[body]" placeholder="What are you trying to do? What have you tried? Anything you specifically want or want to avoid? Reference rigs you like? Tell me anything."></textarea>
+        </div>
+
+        {%- if form.posted_successfully? -%}
+          <p class="field--full" style="color:var(--accent);grid-column:1 / -1;">Thanks — I'll be in touch within 48 hours.</p>
+        {%- endif -%}
+
+        <div class="field field--full" style="display:flex;gap:.6rem;justify-content:flex-end;flex-wrap:wrap;">
+          <button type="submit" class="btn btn--primary">Send brief →</button>
+        </div>
+      {%- endform -%}
+
+    </div>
+  </div>
+</section>
+
+{% schema %}
+{
+  "name": "Custom Build",
+  "settings": [
+    { "type": "header", "content": "Hero" },
+    { "type": "text",     "id": "hero_eyebrow", "label": "Eyebrow",  "default": "COMMISSION A BUILD" },
+    { "type": "text",     "id": "hero_heading", "label": "Heading",  "default": "Tell me what you want. I'll build it." },
+    { "type": "textarea", "id": "hero_lede",    "label": "Lede",     "default": "Send a brief — your budget, what you're doing with it, what you want it to look like — and you'll get a full parts list with quote within 48 hours. Build time is typically 2–3 weeks." },
+    { "type": "header", "content": "Process" },
+    { "type": "text", "id": "process_heading", "label": "Heading", "default": "Four steps, two to three weeks." },
+    { "type": "header", "content": "Tiers" },
+    { "type": "text",     "id": "tiers_heading", "label": "Heading", "default": "Three rough tiers." },
+    { "type": "textarea", "id": "tiers_lede",   "label": "Lede",    "default": "A frame for the conversation — every commission gets a custom parts list. These are typical totals at each tier including parts, labor, and shipping." },
+    { "type": "header", "content": "Form" },
+    { "type": "text",     "id": "form_heading",  "label": "Heading",    "default": "Start the conversation." },
+    { "type": "textarea", "id": "form_lede",     "label": "Lede",       "default": "No commitment. The more detail you give me — references, constraints, weird requirements — the tighter the quote will be." },
+    { "type": "text",     "id": "reply_time",    "label": "Reply time", "default": "48 hours, weekdays." },
+    { "type": "text",     "id": "build_time",    "label": "Build time", "default": "2–3 weeks once approved." },
+    { "type": "text",     "id": "deposit_info",  "label": "Deposit",    "default": "30% on parts order, balance on completion." }
+  ],
+  "blocks": [
+    {
+      "type": "step",
+      "name": "Process Step",
+      "limit": 4,
+      "settings": [
+        { "type": "text",     "id": "code",  "label": "Step code (e.g. BRIEF)", "default": "BRIEF" },
+        { "type": "text",     "id": "title", "label": "Title",                  "default": "You send the brief" },
+        { "type": "textarea", "id": "body",  "label": "Body",                   "default": "Budget, use case, aesthetic — whatever you want me to know." }
+      ]
+    },
+    {
+      "type": "tier",
+      "name": "Tier",
+      "limit": 3,
+      "settings": [
+        { "type": "checkbox", "id": "featured",    "label": "Featured (highlighted border + badge)", "default": false },
+        { "type": "text",     "id": "title",       "label": "Name",        "default": "Workhorse" },
+        { "type": "text",     "id": "price_from",  "label": "Price from",  "default": "$1,800" },
+        { "type": "text",     "id": "price_to",    "label": "Price to (e.g. – $2,500 or +)", "default": "– $2,500" },
+        { "type": "textarea", "id": "description", "label": "Description", "default": "Solid 1440p gaming or general productivity." },
+        { "type": "text",     "id": "spec_1",      "label": "Spec 1",      "default": "Ryzen 7 / Core i5 class" },
+        { "type": "text",     "id": "spec_2",      "label": "Spec 2",      "default": "RTX 4070 / equivalent" },
+        { "type": "text",     "id": "spec_3",      "label": "Spec 3",      "default": "32GB DDR5, 2TB NVMe" },
+        { "type": "text",     "id": "spec_4",      "label": "Spec 4",      "default": "Air cooling, mid tower" },
+        { "type": "text",     "id": "spec_5",      "label": "Spec 5 (optional)", "default": "" }
+      ]
+    }
+  ],
+  "presets": [{
+    "name": "Custom Build",
+    "blocks": [
+      { "type": "step", "settings": { "code": "BRIEF", "title": "You send the brief",  "body": "Budget, use case, aesthetic — whatever you want me to know. Form below, no commitment." } },
+      { "type": "step", "settings": { "code": "QUOTE", "title": "I send a parts list", "body": "Within 48 hours. Itemized parts, total cost, build timeline. Approve, revise, or walk away." } },
+      { "type": "step", "settings": { "code": "BUILD", "title": "I build & test",       "body": "Hand-assembled, cabled, and burn-in tested 24h with full benchmark data sent to you." } },
+      { "type": "step", "settings": { "code": "SHIP",  "title": "Custom-foam crated",  "body": "Insured shipping, signed delivery. 12-month warranty starts the day it arrives." } },
+      { "type": "tier", "settings": { "featured": false, "title": "Workhorse", "price_from": "$1,800", "price_to": "– $2,500", "description": "Solid 1440p gaming or general productivity. Mid-range CPU + GPU, quiet cooling, room to grow.", "spec_1": "Ryzen 7 / Core i5 class", "spec_2": "RTX 4070 / equivalent", "spec_3": "32GB DDR5, 2TB NVMe", "spec_4": "Air cooling, mid tower", "spec_5": "" } },
+      { "type": "tier", "settings": { "featured": true,  "title": "Apex",      "price_from": "$3,200", "price_to": "– $4,500", "description": "High-refresh 4K, streaming, light content work. The build most people end up with.",         "spec_1": "Ryzen 9 / Core i9 class", "spec_2": "RTX 4080 Super / 4090", "spec_3": "64GB DDR5, 4TB NVMe", "spec_4": "360mm AIO, premium chassis", "spec_5": "Custom cabling" } },
+      { "type": "tier", "settings": { "featured": false, "title": "Studio",    "price_from": "$5,500", "price_to": "+",        "description": "Render workstations, scientific compute, watercooled showpieces. Built around your brief.", "spec_1": "Threadripper / Xeon W", "spec_2": "RTX 4090 / pro GPU", "spec_3": "128GB+ ECC RAM", "spec_4": "Custom hardline loop available", "spec_5": "Whatever the brief calls for" } }
+    ]
+  }]
+}
+{% endschema %}
