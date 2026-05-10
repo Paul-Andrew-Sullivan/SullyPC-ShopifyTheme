@@ -1,6 +1,18 @@
 {
   "sections": {
-    "form": { "type": "custom-build-form" }
+    "form": {
+      "type": "custom-build-form",
+      "blocks": {
+        "step1": { "type": "step", "settings": { "code": "BRIEF", "title": "You send the brief",  "body": "Budget, use case, aesthetic — whatever you want me to know. Form below, no commitment." } },
+        "step2": { "type": "step", "settings": { "code": "QUOTE", "title": "I send a parts list", "body": "Within 48 hours. Itemized parts, total cost, build timeline. Approve, revise, or walk away." } },
+        "step3": { "type": "step", "settings": { "code": "BUILD", "title": "I build & test",       "body": "Hand-assembled, cabled, and burn-in tested 24h with full benchmark data sent to you." } },
+        "step4": { "type": "step", "settings": { "code": "SHIP",  "title": "Custom-foam crated",  "body": "Insured shipping, signed delivery. 12-month warranty starts the day it arrives." } },
+        "tier1": { "type": "tier", "settings": { "featured": false, "title": "Workhorse", "price_from": "$1,800", "price_to": "– $2,500", "description": "Solid 1440p gaming or general productivity. Mid-range CPU + GPU, quiet cooling, room to grow.", "spec_1": "Ryzen 7 / Core i5 class", "spec_2": "RTX 4070 / equivalent", "spec_3": "32GB DDR5, 2TB NVMe", "spec_4": "Air cooling, mid tower", "spec_5": "" } },
+        "tier2": { "type": "tier", "settings": { "featured": true,  "title": "Apex",      "price_from": "$3,200", "price_to": "– $4,500", "description": "High-refresh 4K, streaming, light content work. The build most people end up with.",         "spec_1": "Ryzen 9 / Core i9 class", "spec_2": "RTX 4080 Super / 4090", "spec_3": "64GB DDR5, 4TB NVMe", "spec_4": "360mm AIO, premium chassis", "spec_5": "Custom cabling" } },
+        "tier3": { "type": "tier", "settings": { "featured": false, "title": "Studio",    "price_from": "$5,500", "price_to": "+",         "description": "Render workstations, scientific compute, watercooled showpieces. Built around your brief.", "spec_1": "Threadripper / Xeon W", "spec_2": "RTX 4090 / pro GPU", "spec_3": "128GB+ ECC RAM", "spec_4": "Custom hardline loop available", "spec_5": "Whatever the brief calls for" } }
+      },
+      "block_order": ["step1", "step2", "step3", "step4", "tier1", "tier2", "tier3"]
+    }
   },
   "order": ["form"]
 }
