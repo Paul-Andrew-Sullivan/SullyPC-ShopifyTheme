@@ -1,15 +1,15 @@
 {
   "current": {
     "page_width": 1480,
-    "color_bg": "#0a0e14",
-    "color_surface": "#11151c",
-    "color_surface_2": "#171c25",
+    "color_bg": "#FFFFFF",
+    "color_surface": "#F4F3F7",
+    "color_surface_2": "#ECEAF1",
     "color_border": "#1f2530",
-    "color_text": "#e8ecf2",
-    "color_text_dim": "#8a93a3",
-    "color_accent": "#6b8eff",
-    "color_accent_hot": "#88a4ff",
-    "heading_font": "assistant_n7",
+    "color_text": "#1A1A1A",
+    "color_text_dim": "#6B6B6B",
+    "color_accent": "#4D3F66",
+    "color_accent_hot": "#3A2E50",
+    "heading_font": "spectral_n6",
     "body_font": "assistant_n4",
     "mono_font": "assistant_n4",
     "logo_width": 140,
@@ -40,14 +40,14 @@
   "presets": {
     "Default": {
       "page_width": 1480,
-      "color_bg": "#0a0e14",
-      "color_surface": "#11151c",
-      "color_surface_2": "#171c25",
+      "color_bg": "#FFFFFF",
+      "color_surface": "#F4F3F7",
+      "color_surface_2": "#ECEAF1",
       "color_border": "#1f2530",
-      "color_text": "#e8ecf2",
-      "color_text_dim": "#8a93a3",
-      "color_accent": "#6b8eff",
-      "color_accent_hot": "#88a4ff"
+      "color_text": "#1A1A1A",
+      "color_text_dim": "#6B6B6B",
+      "color_accent": "#4D3F66",
+      "color_accent_hot": "#3A2E50"
     }
   }
 }

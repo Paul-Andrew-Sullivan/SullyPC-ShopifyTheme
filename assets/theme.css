@@ -88,8 +88,8 @@ h3 { font-size: 1.25rem; }
 /* ---------- Header ---------- */
 .site-header {
   position: sticky; top: 0; z-index: 50;
-  background: rgba(10,14,20,.78);
-  backdrop-filter: blur(14px);
+  background: color-mix(in srgb, var(--bg) 92%, transparent);
+  backdrop-filter: blur(8px);
   border-bottom: 1px solid var(--border);
 }
 .site-header__bar {
@@ -168,19 +168,10 @@ h3 { font-size: 1.25rem; }
   border-bottom: 1px solid var(--border);
 }
 .hero__grid {
-  position: absolute; inset: 0;
-  background-image:
-    linear-gradient(var(--border) 1px, transparent 1px),
-    linear-gradient(90deg, var(--border) 1px, transparent 1px);
-  background-size: 60px 60px;
-  mask-image: radial-gradient(ellipse at 30% 30%, #000 30%, transparent 75%);
-  opacity: .5;
+  display: none;
 }
 .hero__glow {
-  position: absolute; inset: auto -10% -40% auto;
-  width: 60vw; height: 60vw;
-  background: radial-gradient(circle, color-mix(in srgb, var(--accent) 14%, transparent) 0%, transparent 60%);
-  filter: blur(50px);
+  display: none;
   pointer-events: none;
 }
 .hero__inner {
@@ -237,7 +228,8 @@ h3 { font-size: 1.25rem; }
 }
 .mosaic__item--intro {
   grid-column: span 2; grid-row: span 2;
-  background: linear-gradient(135deg, color-mix(in srgb, var(--accent) 18%, var(--surface-2)), var(--surface));
+  background: var(--surface);
+  border: 1px solid var(--border);
   display: flex; flex-direction: column; justify-content: space-between;
   padding: 1.6rem;
 }
@@ -256,7 +248,8 @@ h3 { font-size: 1.25rem; }
 .mosaic__item__meta {
   position: absolute; left: 0; right: 0; bottom: 0;
   padding: 1rem 1.2rem;
-  background: linear-gradient(to top, rgba(10,14,20,.92), rgba(10,14,20,0));
+  background: linear-gradient(to top, color-mix(in srgb, var(--text) 80%, transparent), transparent);
+  color: var(--bg);
   display: flex; align-items: end; justify-content: space-between; gap: 1rem;
   z-index: 2;
 }
@@ -309,7 +302,7 @@ h3 { font-size: 1.25rem; }
 }
 .mv-card__overlay {
   position: absolute; inset: 0;
-  background: linear-gradient(to top, rgba(10,14,20,.95) 0%, rgba(10,14,20,.4) 40%, rgba(10,14,20,0) 70%);
+  background: linear-gradient(to top, color-mix(in srgb, var(--text) 92%, transparent) 0%, color-mix(in srgb, var(--text) 40%, transparent) 40%, transparent 70%);
   z-index: 1;
 }
 .mv-card__body {
